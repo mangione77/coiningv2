@@ -1,0 +1,83 @@
+#root {
+  background-color:#EEEEEE;
+  height:100%;
+}
+
+
+/*NAVBAR*/
+
+.navbar--main {
+  background-color: #4886b0;
+  border-style:none;
+  border-radius:0px;
+}
+
+.navbar a {
+    color: white;
+}
+
+.navbar a:hover {
+    color: #4886b0;
+}
+
+.navbar-link   {
+  color:white;
+}
+
+.navbar--nav-links {
+  margin:0px;
+
+}
+
+.navbar-brand {
+  font-size:20px;
+}
+
+.list-group {
+  list-style:none;
+}
+
+.footer {
+  background-color:white !important;
+}
+
+/*LAST PRICE*/
+
+.home--lastprice {
+  text-align:center;
+}
+
+.home--lastprice--title {
+  font-size:20px;
+  letter-spacing: 2px
+}
+
+.home--lastprice--price {
+  font-size:40px;
+  color:#4886b0;
+}
+
+/*LATEST NEWS*/
+
+.latestnews--result {
+  padding:15px;
+  border-width:1px;
+}
+
+.panel-title {
+  font-size:10px;
+  letter-spacing:1px
+}
+
+.latestnews--link {
+  padding-left:10px;
+}
+
+.panel-body {
+  padding:0px;
+  margin-bottom:0px;
+}
+
+.panel-footer {
+  padding:0px;
+}
