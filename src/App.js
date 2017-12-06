@@ -5,6 +5,7 @@ import BTCAverage_ApiService from './services/BTCAverage_ApiService'
 import CoinDesk_ApiService from './services/CoinDesk_ApiService'
 import Markets_ApiService from './services/Markets_ApiService'
 import Tweets_ApiService from './services/Tweets_ApiService'
+import Posts_ApiService from './services/Posts_ApiService'
 
 import Navbar from './components/NavBar'
 import Footer from './components/Footer'
@@ -21,7 +22,7 @@ class App extends Component {
 			exchanges:[],
 			tweetsOnQuery:[],
 			navTweet:[],
-			posts:[]
+			posts:[],
 		}
 	}
 
@@ -52,6 +53,15 @@ class App extends Component {
 				})
 			})
 			.catch(console.error)
+	}
+
+	getPosts = (limit) => {
+		Posts_ApiService.getPosts(limit)
+			.then(response => {
+				this.setState({
+					posts:response.data
+				})
+			})
 	}
 
 	getTweetsOnQuery = (query) => {
@@ -87,7 +97,7 @@ class App extends Component {
     return (
       <div className="App">
       <Navbar btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} navTweet={this.state.navTweet} />
-      <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} exchanges={this.state.exchanges} posts={this.state.posts}/>
+      <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} exchanges={this.state.exchanges} posts={this.state.posts} getPosts={this.getPosts}/>
       <Footer />  
       </div>
     );

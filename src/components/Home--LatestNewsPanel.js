@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import Posts_ApiService from '../services/Posts_ApiService'
 
 class LatestNewsPanel extends Component {
 	constructor(props) {
 		super() 
 			this.state = {
-				posts:[],
 				numberOfResults:5,
 				increment:5
 			}
@@ -13,12 +11,7 @@ class LatestNewsPanel extends Component {
 	}
 
 	getPosts = () => {
-		Posts_ApiService.getPosts(this.state.numberOfResults)
-			.then(response => {
-				this.setState({
-					posts:response.data
-				})
-			})
+		this.props.getPosts(this.state.numberOfResults)
 	}
 
 	moreNewsHandler = (event) => {
@@ -26,18 +19,9 @@ class LatestNewsPanel extends Component {
 		this.setState({
 			numberOfResults:this.state.numberOfResults+this.state.increment
 		}, () => {
-			this.getPosts(this.state.numberOfResults)
+			this.props.getPosts(this.state.numberOfResults)
 		})
 	}
-
-	componentDidMount() {
-		this.getPosts(this.state.numberOfResults)
-	}
-
-	componentDidUpdate() {
-		console.log(this.state.posts)
-	}
-
 
 	render() {
 		return (
@@ -48,7 +32,7 @@ class LatestNewsPanel extends Component {
 				  <div className="panel-body">
 				    <ul className="list-group">
 					{
-						this.state.posts.map(post => {
+						this.props.posts.map(post => {
 							return 	<li className="list-group-item latestnews--result" key={post._id}>
 				   			<a href={post.link} rel="noopener" target="_blank">{post.title}</a><em className="text-muted latestnews--link">{post.from}</em><br />
 				   		</li>
