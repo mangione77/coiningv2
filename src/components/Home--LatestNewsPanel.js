@@ -1,6 +1,44 @@
 import React, { Component } from 'react'
+import Posts_ApiService from '../services/Posts_ApiService'
 
 class LatestNewsPanel extends Component {
+	constructor(props) {
+		super() 
+			this.state = {
+				posts:[],
+				numberOfResults:5,
+				increment:5
+			}
+		
+	}
+
+	getPosts = () => {
+		Posts_ApiService.getPosts(this.state.numberOfResults)
+			.then(response => {
+				this.setState({
+					posts:response.data
+				})
+			})
+	}
+
+	moreNewsHandler = (event) => {
+		event.preventDefault()
+		this.setState({
+			numberOfResults:this.state.numberOfResults+this.state.increment
+		}, () => {
+			this.getPosts(this.state.numberOfResults)
+		})
+	}
+
+	componentDidMount() {
+		this.getPosts(this.state.numberOfResults)
+	}
+
+	componentDidUpdate() {
+		console.log(this.state.posts)
+	}
+
+
 	render() {
 		return (
 			<div className="panel panel-default">
@@ -9,22 +47,21 @@ class LatestNewsPanel extends Component {
 				  </div>
 				  <div className="panel-body">
 				    <ul className="list-group">
-				   		<li className="list-group-item latestnews--result">
-				   			<a href="google.com">Notición</a><em className="text-muted latestnews--link">Google.com</em><br />
-				   			<span className="text-overflow">Se esta cabando el bitcoin y la puta...</span>
+					{
+						this.state.posts.map(post => {
+							return 	<li className="list-group-item latestnews--result" key={post._id}>
+				   			<a href={post.link} rel="noopener" target="_blank">{post.title}</a><em className="text-muted latestnews--link">{post.from}</em><br />
 				   		</li>
-				   		<li className="list-group-item latestnews--result">
-				   			<a href="google.com">Otra más</a><em className="text-muted latestnews--link">Coindesk.com</em><br />
-				   			<span className="text-overflow">Que pasa en la casa</span>
-				   		</li>
+						})
+					}
 				    </ul>
 				  </div>
 				  <div className="panel-footer">
-				  	<a className="btn btn-primary btn-block">Más noticias</a>
+				  	<button className="btn btn-primary btn-block" onClick={this.moreNewsHandler}>Más noticias</button>
 				  </div>
 				</div>
 		)
-	}
+	}		
 }
 
 export default LatestNewsPanel

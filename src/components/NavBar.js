@@ -17,8 +17,9 @@ class NavBar extends Component {
 			    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul className="nav navbar-nav navbar-left">
 			    {	
-			    	<li className="navbar-link"><a>Trending:{this.props.navTweet.text}</a></li>
-			    	
+			    	this.props.navTweet.length !== 0 
+			    	? <li className="navbar-link"><a>Trending:{(this.props.navTweet.text).slice(0,80)}...</a></li>
+			    	: <li className="navbar-link"><a>Trending:</a></li>
 			    }
 			    </ul>
 			      <ul className="nav navbar-nav navbar-right">

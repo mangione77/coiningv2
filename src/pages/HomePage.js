@@ -20,7 +20,7 @@ class HomePage extends Component {
 						<MercadosList exchanges={this.props.exchanges} />
 					</Col>
 					<Col lg={8} sm={6} xs={12}>
-						<LatestNewsPanel />
+						<LatestNewsPanel posts={this.props.posts} />
 						<LatestTweets />
 					</Col>
 				</Row>

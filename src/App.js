@@ -20,7 +20,8 @@ class App extends Component {
 			coindesk:parseFloat(Number),
 			exchanges:[],
 			tweetsOnQuery:[],
-			navTweet:[]
+			navTweet:[],
+			posts:[]
 		}
 	}
 
@@ -73,6 +74,7 @@ class App extends Component {
 			.catch(console.error)
 	}
 
+
 	componentDidMount() {
 		this.getBTCAverageEURLatestPrice()
 		this.getCoindeskEURLatestPrice()
@@ -81,12 +83,11 @@ class App extends Component {
 
 	}
 
-
   render() {
     return (
       <div className="App">
       <Navbar btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} navTweet={this.state.navTweet} />
-      <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} exchanges={this.state.exchanges}/>
+      <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} exchanges={this.state.exchanges} posts={this.state.posts}/>
       <Footer />  
       </div>
     );
