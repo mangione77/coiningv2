@@ -16,7 +16,10 @@ Coining aims at giving a solution to that problem: By bringing the information a
 The backend part of this project is hosted in [this repo](https://github.com/mangione77/coiningv2-backend).
 The scrapers are the same as the previous version and are hosted in [this repo](https://github.com/mangione77/coining-scraping)
 
-### Dependencies (frontend)
+### Live Demo
+https://salty-island-34711.herokuapp.com/
+
+#### Dependencies (frontend)
 
     "axios": "^0.17.1",
     "react": "^16.2.0",
