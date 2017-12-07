@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import swal from 'sweetalert2'
 
 class LatestNewsPanel extends Component {
 	constructor(props) {
 		super() 
 			this.state = {
 				numberOfResults:5,
-				increment:5
+				increment:5,
+				max:15
 			}
 		
 	}
@@ -16,11 +18,20 @@ class LatestNewsPanel extends Component {
 
 	moreNewsHandler = (event) => {
 		event.preventDefault()
+		if (this.state.numberOfResults < this.state.max) {
 		this.setState({
 			numberOfResults:this.state.numberOfResults+this.state.increment
 		}, () => {
 			this.props.getPosts(this.state.numberOfResults)
 		})
+		}
+		else {
+			swal('Has llegado al límite de consultas', 'Prueba otra vez más tarde', 'error')
+		}
+	}
+
+	componentDidMount() {
+		this.getPosts()
 	}
 
 	render() {

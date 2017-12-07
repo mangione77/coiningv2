@@ -64,8 +64,8 @@ class App extends Component {
 			})
 	}
 
-	getTweetsOnQuery = (query) => {
-		Tweets_ApiService.getTweetsOnQuery(query)
+	getTweetsOnQuery = (query,count) => {
+		Tweets_ApiService.getTweetsOnQuery(query,count)
 			.then(response => {
 				this.setState({
 					tweetsOnQuery:response.data
@@ -93,11 +93,14 @@ class App extends Component {
 
 	}
 
+
   render() {
     return (
       <div className="App">
       <Navbar btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} navTweet={this.state.navTweet} />
-      <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} exchanges={this.state.exchanges} posts={this.state.posts} getPosts={this.getPosts}/>
+      <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} 
+      			exchanges={this.state.exchanges} posts={this.state.posts} getPosts={this.getPosts} 
+      			getTweetsOnQuery={this.getTweetsOnQuery} tweetsOnQuery={this.state.tweetsOnQuery} />
       <Footer />  
       </div>
     );

@@ -21,7 +21,7 @@ class HomePage extends Component {
 					</Col>
 					<Col lg={8} sm={6} xs={12}>
 						<LatestNewsPanel posts={this.props.posts} getPosts={this.props.getPosts} />
-						<LatestTweets />
+						<LatestTweets getTweetsOnQuery={this.props.getTweetsOnQuery} tweetsOnQuery={this.props.tweetsOnQuery} />
 					</Col>
 				</Row>
 			</Grid>

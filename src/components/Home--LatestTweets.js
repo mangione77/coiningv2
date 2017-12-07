@@ -1,26 +1,77 @@
 import React, { Component } from 'react'
+import swal from 'sweetalert2'
 
 class LatestTweets extends Component {
+	constructor() {
+		super()
+
+		this.state = {
+			initialCount:5,
+			increase:5,
+			max:30,
+			current:'',
+			default:'criptomonedas'
+		}
+	}
+
+	tweetKeywordHandler = (event) => {
+		event.preventDefault()
+		let query = event.target.value
+		this.setState({
+			current:query,
+			initialCount:5
+		}, () => {
+			let count = this.state.initialCount
+			this.props.getTweetsOnQuery(query,count)			
+		}) 
+
+	}
+
+	moreTweetsHandler = (event) => {
+		event.preventDefault()
+		if (this.state.initialCount < this.state.max)	{
+		this.setState({
+			initialCount:this.state.initialCount+this.state.increase
+		}, () => {
+			this.props.getTweetsOnQuery(this.state.current,this.state.initialCount)
+		})
+	}
+	else {
+		swal('¡Has llegado al límite de consultas!','Prueba otra vez más tarde','error')
+	}	
+		
+	}
+
+
+	componentDidMount() {
+		this.props.getTweetsOnQuery(this.state.default,this.state.initialCount)
+	}
+
 	render() {
 		return (
 			<div className="panel panel-default">
 				 <div className="panel-heading">
 				  <h3 className="panel-title">Últimos Tweets</h3>
+					<div className="btn-group btn-group-sm latestnews--tweets" role="group" aria-label="Basic example">
+					  <button type="button" className="btn btn-secondary" value="criptomonedas" onClick={this.tweetKeywordHandler}>Criptomonedas</button>
+					  <button type="button" className="btn btn-secondary" value="bitcoin" onClick={this.tweetKeywordHandler}>Bitcoin</button>
+					  <button type="button" className="btn btn-secondary" value="bitcoin cash" onClick={this.tweetKeywordHandler}>Bitcoin Cash</button>
+					</div>
 				  </div>
 				  <div className="panel-body">
 				    <ul className="list-group">
-				   		<li className="list-group-item latestnews--result">
-				   			<a href="google.com">Testing1</a><em className="text-muted latestnews--link">@testing1</em><br />
-				   			<span className="text-overflow">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus at accusamus, voluptatum quia, dicta sunt delectus animi, recusandae debitis aliquid dolorem eum vel cum adipisci sit, libero minus! Molestiae, facere.</span>
-				   		</li>
-				   		<li className="list-group-item latestnews--result">
-				   			<a href="google.com">Testing2</a><em className="text-muted latestnews--link">@testing2</em><br />
-				   			<span className="text-overflow">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed dolorum adipisci harum minima optio, nesciunt quidem maiores eius debitis tempora nostrum dolor, beatae, animi exercitationem, quia ullam porro rem eaque?</span>
-				   		</li>
+					{
+						this.props.tweetsOnQuery.map(tweet => {
+							return <li className="list-group-item latestnews--result" key={tweet.id}>
+				   						<a href="google.com">{tweet.user.name}</a><em className="text-muted latestnews--link">@{tweet.user.screen_name}</em><br />
+				   						<span className="text-overflow">{tweet.text}</span>
+				   					</li>
+						})
+					}
 				    </ul>
 				  </div>
 				  <div className="panel-footer">
-				  	<a className="btn btn-primary btn-block">Más tweets</a>
+				  	<a className="btn btn-primary btn-block" onClick={this.moreTweetsHandler}>Más tweets</a>
 				  </div>
 				</div>
 		)

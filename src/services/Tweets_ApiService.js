@@ -2,9 +2,9 @@ import axios from 'axios'
 
 const Tweets_ApiService = {}
 
-Tweets_ApiService.getTweetsOnQuery = (query) => {
+Tweets_ApiService.getTweetsOnQuery = (query,count) => {
 	return new Promise((resolve,reject) => {
-		axios.get(`http://localhost:1337/api/tweets/${query}`)
+		axios.get(`http://localhost:1337/api/tweets/${query}/${count}`)
 			.then(data => {
 				resolve(data.data)
 			})
@@ -14,8 +14,9 @@ Tweets_ApiService.getTweetsOnQuery = (query) => {
 }
 
 Tweets_ApiService.getOnlyOneTweet = (query) => {
+	let count = 1
 	return new Promise((resolve,reject) => {
-		axios.get(`http://localhost:1337/api/tweets/${query}`)
+		axios.get(`http://localhost:1337/api/tweets/${query}/${count}`)
 			.then(response => {
 				for (let i=0;i<response.data.data.length;i++) {
 					resolve(response.data.data[i])
