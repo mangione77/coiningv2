@@ -101,7 +101,7 @@ class App extends Component {
       <HomePage btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} 
       			exchanges={this.state.exchanges} posts={this.state.posts} getPosts={this.getPosts} 
       			getTweetsOnQuery={this.getTweetsOnQuery} tweetsOnQuery={this.state.tweetsOnQuery} />
-      <Footer />  
+      <Footer btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} />  
       </div>
     );
   }

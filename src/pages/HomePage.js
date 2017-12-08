@@ -11,7 +11,6 @@ class HomePage extends Component {
 
 	render() {
 		return (
-			<div className="container">
 			<Grid>
 				<Row>
 					<Col lg={4} sm={6} xs={12}>
@@ -25,7 +24,6 @@ class HomePage extends Component {
 					</Col>
 				</Row>
 			</Grid>
-			</div>
 		)
 	}
 }
