@@ -6,7 +6,7 @@ const BTCAverage_ApiService = {}
 
 BTCAverage_ApiService.getBitcoinAveragePrice_EUR = () => {
 	return new Promise((resolve,reject) => {
-		axios.get('http://localhost:1337/api/indexes/btcaverage/eur')
+		axios.get('https://lit-beyond-48037.herokuapp.com/api/indexes/btcaverage/eur')
 			.then(response => {
 				resolve(response.data)
 			})
@@ -18,7 +18,7 @@ BTCAverage_ApiService.getBitcoinAveragePrice_EUR = () => {
 
 BTCAverage_ApiService.getBitcoinAveragePrice_USD = () => {
 	return new Promise((resolve,reject) => {
-		axios.get('http://localhost:1337/indexes/btcaverage/usd')
+		axios.get('https://lit-beyond-48037.herokuapp.com/indexes/btcaverage/usd')
 			.then(response => {
 				resolve(response.data)
 			})

@@ -4,7 +4,7 @@ const CoinDesk_ApiService = {}
 
 CoinDesk_ApiService.getLatestPriceEUR = () => {
 	return new Promise((resolve,reject) => {
-		axios.get('http://localhost:1337/api/indexes/coindesk/eur')
+		axios.get('https://lit-beyond-48037.herokuapp.com/api/indexes/coindesk/eur')
 			.then(response => {
 				resolve(response.data)
 			})
