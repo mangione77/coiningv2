@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import formatCurrency  from 'format-currency'
+
 
 class Footer extends Component {
 	render() {
@@ -6,7 +8,7 @@ class Footer extends Component {
 			<div>
 				<footer className="container-fluid text-center footer">
 					<hr />
-					<p>El precio del Bitcoin:<span className="footer--price">{((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)}€</span></p>
+					<p>El precio del Bitcoin:<span className="footer--price">{formatCurrency(parseFloat(((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)))}€</span></p>
 					<p>Coining te trae los últimos precios y noticias sobre las criptomonedas</p>
 					<p>¡Se aceptan sugerencias!</p>
 					<hr />

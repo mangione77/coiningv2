@@ -45,11 +45,12 @@
 
 .home--lastprice {
   text-align:center;
+  padding-bottom:10px;
 }
 
 .home--lastprice--title {
   font-size:20px;
-  letter-spacing: 2px
+  font-weight:900;
 }
 
 .home--lastprice--price {
@@ -83,6 +84,9 @@
   padding:0px;
 }
 
+.panel--result {
+  margin-bottom:0px;
+}
 
 .footer--price {
   color:#4886b0;

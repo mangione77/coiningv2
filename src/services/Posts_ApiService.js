@@ -4,7 +4,7 @@ const Posts_ApiService = {}
 
 Posts_ApiService.getPosts = (limit) => {
 	return new Promise((resolve,reject) => {
-		axios.get(`https://lit-beyond-48037.herokuapp.com/api/news/${limit}`)
+		axios.get(`http://localhost:1337/api/news/${limit}`)
 			.then(response => {
 				resolve(response.data)
 			})

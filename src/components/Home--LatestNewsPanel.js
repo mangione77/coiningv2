@@ -5,9 +5,9 @@ class LatestNewsPanel extends Component {
 	constructor(props) {
 		super() 
 			this.state = {
-				numberOfResults:5,
+				numberOfResults:'',
 				increment:5,
-				max:15
+				max:20
 			}
 		
 	}
@@ -30,8 +30,18 @@ class LatestNewsPanel extends Component {
 		}
 	}
 
+	componentWillReceiveProps() {
+		this.setState({
+			numberOfResults:this.props.initialCount
+		})
+	}
+
 	componentDidMount() {
-		this.getPosts()
+		console.log('DID MOUNT => ',this.state)
+	}
+
+	componentDidUpdate() {
+		console.log('DID UPDATE => ',this.state)
 	}
 
 	render() {

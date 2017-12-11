@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import formatCurrency  from 'format-currency'
 
 class IndexesList extends Component {
 	render() {
@@ -10,13 +11,13 @@ class IndexesList extends Component {
 				  <div className="panel-body">
 				    <table className="table">
 				    	<tbody>
-				    		<tr>
+				    		<tr className="panel--result">
 				    			<th><a href="https://bitcoinaverage.com/" target="_blank" rel="nofollow noopener noreferrer">Bitcoin Average</a></th>
-				    			<td>{this.props.btcAverage}€</td>
+				    			<td>{formatCurrency(parseFloat(this.props.btcAverage).toFixed(2))}€</td>
 				    		</tr>
 				    		<tr>
 				    			<th><a href="https://www.coindesk.com/" target="_blank" rel="nofollow noopener noreferrer">CoinDesk</a></th>
-				    			<td>{(this.props.coindesk).toFixed(2)}€</td>
+				    			<td>{formatCurrency(parseFloat((this.props.coindesk).toFixed(2)))}€</td>
 				    		</tr>	
 				    	</tbody>
 				    </table>

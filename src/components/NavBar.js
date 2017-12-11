@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+import formatCurrency  from 'format-currency'
 
 class NavBar extends Component {
 	render() {
@@ -12,7 +14,7 @@ class NavBar extends Component {
 			        <span className="icon-bar"></span>
 			        <span className="icon-bar"></span>
 			      </button>
-			      <a className="navbar-brand">Coining</a>
+			      <NavLink to="/" className="navbar-brand">Coining</NavLink>
 			    </div>
 			    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul className="nav navbar-nav navbar-left">
@@ -23,18 +25,10 @@ class NavBar extends Component {
 			    }
 			    </ul>
 			      <ul className="nav navbar-nav navbar-right">
-			        <li className="navbar-link"><a>Último precio:{' ' +((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)}€</a></li>
+			        <li className="navbar-link"><a>Último precio:{' ' +formatCurrency(parseFloat(((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)))}€</a></li>
 			        <li className="navbar-link"><a>Últimas noticias</a></li>
-			        <li className="dropdown">
-			          <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gráficos <span className="caret"></span></a>
-			          <ul className="dropdown-menu">
-			            <li><a>Todas las monedas</a></li>
-			            <li><a>Porcentaje de cambio</a></li>
-			            <li><a>Valuación histórica</a></li>
-			            <li role="separator" className="divider"></li>
-			            <li><a>About</a></li>
-			          </ul>
-			        </li>
+			        <NavLink to="/graficos" className="navbar-link">Gráficos</NavLink>
+			        <NavLink to="/about"><a>About</a></NavLink>
 			      </ul>
 			    </div>
 			  </div>

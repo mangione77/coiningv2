@@ -4,7 +4,7 @@ const Tweets_ApiService = {}
 
 Tweets_ApiService.getTweetsOnQuery = (query,count) => {
 	return new Promise((resolve,reject) => {
-		axios.get(`https://lit-beyond-48037.herokuapp.com/api/tweets/${query}/${count}`)
+		axios.get(`http://localhost:1337/api/tweets/${query}/${count}`)
 			.then(data => {
 				resolve(data.data)
 			})
@@ -16,7 +16,7 @@ Tweets_ApiService.getTweetsOnQuery = (query,count) => {
 Tweets_ApiService.getOnlyOneTweet = (query) => {
 	let count = 1
 	return new Promise((resolve,reject) => {
-		axios.get(`https://lit-beyond-48037.herokuapp.com/api/tweets/${query}/${count}`)
+		axios.get(`http://localhost:1337/api/tweets/${query}/${count}`)
 			.then(response => {
 				for (let i=0;i<response.data.data.length;i++) {
 					resolve(response.data.data[i])

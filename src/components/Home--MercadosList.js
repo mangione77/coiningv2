@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import formatCurrency  from 'format-currency'
 
 class MercadosList extends Component {
 	render() {
@@ -14,8 +15,8 @@ class MercadosList extends Component {
 				    		this.props.exchanges.map(exchange => {
 				    			return <tr key={exchange.name}>
 				    						<th><a href={exchange.url} target="_blank" rel="nofollow noopener noreferrer">{exchange.display_name}</a></th>
-				    						<td>{exchange.symbols.BTCEUR.last}€</td>
-				    						<td>{parseFloat(exchange.symbols.BTCEUR.volume).toFixed(2)}€</td>
+				    						<td>{formatCurrency(parseFloat(exchange.symbols.BTCEUR.last).toFixed(2))}€</td>
+				    						<td>{formatCurrency(parseFloat(exchange.symbols.BTCEUR.volume).toFixed(2))}€</td>
 				    					</tr>
 				    		})
 				    	}

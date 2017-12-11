@@ -4,7 +4,7 @@ const Markets_ApiService = {}
 
 Markets_ApiService.getMarketData = () => {
 	return new Promise((resolve,reject) => {
-		axios.get('https://lit-beyond-48037.herokuapp.com/api/exchanges')
+		axios.get('http://localhost:1337/api/exchanges')
 			.then(response => {
 				resolve(response.data)
 			})

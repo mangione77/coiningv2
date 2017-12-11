@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import swal from 'sweetalert2'
+import Moment from 'react-moment'
+import 'moment/locale/es'
 
 class LatestTweets extends Component {
 	constructor() {
@@ -9,7 +11,7 @@ class LatestTweets extends Component {
 			initialCount:5,
 			increase:5,
 			max:30,
-			current:'',
+			current:'' || 'criptomonedas',
 			default:'criptomonedas'
 		}
 	}
@@ -17,6 +19,7 @@ class LatestTweets extends Component {
 	tweetKeywordHandler = (event) => {
 		event.preventDefault()
 		let query = event.target.value
+		console.log(query,this.state.initialCount)
 		this.setState({
 			current:query,
 			initialCount:5
@@ -31,7 +34,7 @@ class LatestTweets extends Component {
 		event.preventDefault()
 		if (this.state.initialCount < this.state.max)	{
 		this.setState({
-			initialCount:this.state.initialCount+this.state.increase
+			initialCount:this.props.initialCount+this.state.increase
 		}, () => {
 			this.props.getTweetsOnQuery(this.state.current,this.state.initialCount)
 		})
@@ -43,9 +46,6 @@ class LatestTweets extends Component {
 	}
 
 
-	componentDidMount() {
-		this.props.getTweetsOnQuery(this.state.default,this.state.initialCount)
-	}
 
 	render() {
 		return (
@@ -55,7 +55,7 @@ class LatestTweets extends Component {
 					<div className="btn-group btn-group-sm latestnews--tweets" role="group" aria-label="Basic example">
 					  <button type="button" className="btn btn-secondary" value="criptomonedas" onClick={this.tweetKeywordHandler}>Criptomonedas</button>
 					  <button type="button" className="btn btn-secondary" value="bitcoin" onClick={this.tweetKeywordHandler}>Bitcoin</button>
-					  <button type="button" className="btn btn-secondary" value="bitcoin cash" onClick={this.tweetKeywordHandler}>Bitcoin Cash</button>
+					  <button type="button" className="btn btn-secondary" value="bitcoin exchanges" onClick={this.tweetKeywordHandler}>Bitcoin Cash</button>
 					</div>
 				  </div>
 				  <div className="panel-body">
@@ -64,7 +64,8 @@ class LatestTweets extends Component {
 						this.props.tweetsOnQuery.map(tweet => {
 							return <li className="list-group-item latestnews--result" key={tweet.id}>
 				   						<a href="google.com">{tweet.user.name}</a><em className="text-muted latestnews--link">@{tweet.user.screen_name}</em><br />
-				   						<span className="text-overflow">{tweet.text}</span>
+				   						<span className="text-overflow">{tweet.text}</span><br/>
+				   						<em className="text-muted"><Moment fromNow locale="es">{tweet.created_at}</Moment></em>
 				   					</li>
 						})
 					}
