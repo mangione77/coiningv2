@@ -19,7 +19,6 @@ class LatestTweets extends Component {
 	tweetKeywordHandler = (event) => {
 		event.preventDefault()
 		let query = event.target.value
-		console.log(query,this.state.initialCount)
 		this.setState({
 			current:query,
 			initialCount:5
@@ -32,19 +31,9 @@ class LatestTweets extends Component {
 
 	moreTweetsHandler = (event) => {
 		event.preventDefault()
-		if (this.state.initialCount < this.state.max)	{
-		this.setState({
-			initialCount:this.props.initialCount+this.state.increase
-		}, () => {
-			this.props.getTweetsOnQuery(this.state.current,this.state.initialCount)
-		})
-	}
-	else {
-		swal('¡Has llegado al límite de consultas!','Prueba otra vez más tarde','error')
-	}	
+		this.props.sumToTweetCount()
 		
 	}
-
 
 
 	render() {

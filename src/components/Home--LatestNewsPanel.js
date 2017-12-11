@@ -18,31 +18,9 @@ class LatestNewsPanel extends Component {
 
 	moreNewsHandler = (event) => {
 		event.preventDefault()
-		if (this.state.numberOfResults < this.state.max) {
-		this.setState({
-			numberOfResults:this.state.numberOfResults+this.state.increment
-		}, () => {
-			this.props.getPosts(this.state.numberOfResults)
-		})
-		}
-		else {
-			swal('Has llegado al límite de consultas', 'Prueba otra vez más tarde', 'error')
-		}
+		this.props.sumToInitialCount()
 	}
 
-	componentWillReceiveProps() {
-		this.setState({
-			numberOfResults:this.props.initialCount
-		})
-	}
-
-	componentDidMount() {
-		console.log('DID MOUNT => ',this.state)
-	}
-
-	componentDidUpdate() {
-		console.log('DID UPDATE => ',this.state)
-	}
 
 	render() {
 		return (

@@ -27,8 +27,8 @@ class NavBar extends Component {
 			      <ul className="nav navbar-nav navbar-right">
 			        <li className="navbar-link"><a>Último precio:{' ' +formatCurrency(parseFloat(((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)))}€</a></li>
 			        <li className="navbar-link"><a>Últimas noticias</a></li>
-			        <NavLink to="/graficos" className="navbar-link">Gráficos</NavLink>
-			        <NavLink to="/about"><a>About</a></NavLink>
+			        <li className="navbar-link"><NavLink to="/graficos" className="navbar-link">Gráficos</NavLink></li>
+			        <li className="navbar-link"><NavLink to="/about">About</NavLink></li>
 			      </ul>
 			    </div>
 			  </div>

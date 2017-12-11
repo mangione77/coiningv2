@@ -24,6 +24,13 @@ class App extends Component {
 			tweetsOnQuery:[],
 			navTweet:[],
 			posts:[],
+			initialCount:5,
+			increase:5,
+			tweetCount:5,
+			tweetIncrease:5,
+			currentQuery: 'criptomonedas',
+			maxTweets:30,
+			maxPosts:10
 		}
 	}
 
@@ -86,17 +93,44 @@ class App extends Component {
 	}
 
 
+	sumToInitialCount = () => {
+		if (this.state.initialCount < this.state.maxPosts) {
+			this.setState({
+				initialCount:this.state.initialCount+this.state.increase
+			}, () => {
+				this.getPosts(this.state.initialCount)
+			})
+		}
+		else {
+			alert('you reached the limit')
+		}
+	}
+
+	sumToTweetCount = () => {
+		if (this.state.tweetCount < this.state.maxTweets) {	
+		this.setState({
+			tweetCount:this.state.tweetCount+this.state.tweetIncrease
+		}, () => {
+			this.getTweetsOnQuery(this.state.currentQuery,this.state.tweetCount)
+		})
+		}
+		else {
+			alert('you reached the limit')
+		}
+	}
+ 
+
 	componentDidMount() {
 		this.getBTCAverageEURLatestPrice()
 		this.getCoindeskEURLatestPrice()
 		this.getExchangesData()
 		this.getOnlyOneTweet('criptomonedas')
-		this.getTweetsOnQuery('criptomonedas','5')
-		this.getPosts('5')
+		this.getTweetsOnQuery(this.state.currentQuery,this.state.tweetCount)
+		this.getPosts(this.state.initialCount)
 	}
 
 	componentDidUpdate() {
-		console.log(this.state.tweetsOnQuery)
+		console.log(this.state.tweetCount)
 	}
 
 
@@ -108,7 +142,8 @@ class App extends Component {
       
       <Route exact path="/" component={(props) => <HomePage {...props} btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} 
       			exchanges={this.state.exchanges} posts={this.state.posts} getPosts={this.getPosts} 
-      			getTweetsOnQuery={this.getTweetsOnQuery} tweetsOnQuery={this.state.tweetsOnQuery} initialCount={this.state.initialCount} /> } /> 
+      			getTweetsOnQuery={this.getTweetsOnQuery} tweetsOnQuery={this.state.tweetsOnQuery} sumToInitialCount={this.sumToInitialCount} 
+      			sumToTweetCount={this.sumToTweetCount}	/> } /> 
 	
 	  <Route path="/graficos" component={() => <h1>Graficos</h1>} />
       <Route path="/about" component={() => <h1>About</h1>} />

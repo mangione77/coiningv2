@@ -19,8 +19,8 @@ class HomePage extends Component {
 						<MercadosList exchanges={this.props.exchanges} />
 					</Col>
 					<Col lg={8} sm={6} xs={12}>
-						<LatestNewsPanel posts={this.props.posts} getPosts={this.props.getPosts} initialCount={this.props.initialCount} />
-						<LatestTweets getTweetsOnQuery={this.props.getTweetsOnQuery} tweetsOnQuery={this.props.tweetsOnQuery} />
+						<LatestNewsPanel posts={this.props.posts} getPosts={this.props.getPosts} sumToInitialCount={this.props.sumToInitialCount} />
+						<LatestTweets getTweetsOnQuery={this.props.getTweetsOnQuery} tweetsOnQuery={this.props.tweetsOnQuery} sumToTweetCount={this.props.sumToTweetCount} />
 					</Col>
 				</Row>
 			</Grid>
