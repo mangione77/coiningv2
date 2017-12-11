@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import swal from 'sweetalert2'
 import Moment from 'react-moment'
 import 'moment/locale/es'
 

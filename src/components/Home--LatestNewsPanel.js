@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import swal from 'sweetalert2'
 
 class LatestNewsPanel extends Component {
 	constructor(props) {

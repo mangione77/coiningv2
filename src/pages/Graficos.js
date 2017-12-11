@@ -14,7 +14,7 @@ class Graficos extends Component {
 							  <h3 className="panel-title">Valuación histórica</h3>
 							  </div>
 							  <div className="panel-body panel-grafico">
-							  <MonthBTCData month={this.props.month}/>
+							  	<MonthBTCData month={this.props.month}/>
 							  </div>
 							</div>
 						</Col>

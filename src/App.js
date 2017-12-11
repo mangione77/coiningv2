@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
+import swal from 'sweetalert2'
 
 import BTCAverage_ApiService from './services/BTCAverage_ApiService'
 import CoinDesk_ApiService from './services/CoinDesk_ApiService'
@@ -14,6 +15,7 @@ import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
 import Graficos from './pages/Graficos'
+import About from './pages/About'
 
 class App extends Component {
 	constructor() {
@@ -115,7 +117,7 @@ class App extends Component {
 			})
 		}
 		else {
-			alert('you reached the limit')
+			swal('¡Has llegado al límite de consultas!','Prueba otra vez más tarde','error')
 		}
 	}
 
@@ -128,7 +130,7 @@ class App extends Component {
 		})
 		}
 		else {
-			alert('you reached the limit')
+			swal('¡Has llegado al límite de consultas!','Prueba otra vez más tarde','error')
 		}
 	}
  
@@ -156,7 +158,7 @@ class App extends Component {
       			sumToTweetCount={this.sumToTweetCount}	/> } /> 
 	
 	  <Route path="/graficos" component={(props) => <Graficos {...props} month={this.state.historicalData} />} />
-      <Route path="/about" component={() => <h1>About</h1>} />
+      <Route path="/about" component={About} />
       			
       <Route path="/" component={(props) => <Footer btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} /> } />  
       </div>

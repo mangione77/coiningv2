@@ -95,3 +95,14 @@
 .footer--price {
   color:#4886b0;
 }
+
+/*ABOUT*/
+
+.about-jumbotron {
+  text-align:center;
+  background-color:rgba(25, 148, 148, 0.1);
+}
+
+.header-about {
+  text-align:center;
+}
