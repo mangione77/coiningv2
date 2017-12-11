@@ -7,11 +7,13 @@ import CoinDesk_ApiService from './services/CoinDesk_ApiService'
 import Markets_ApiService from './services/Markets_ApiService'
 import Tweets_ApiService from './services/Tweets_ApiService'
 import Posts_ApiService from './services/Posts_ApiService'
+import HistoricalData_ApiService from './services/HistoricalData_ApiService'
 
 import Navbar from './components/NavBar'
 import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
+import Graficos from './pages/Graficos'
 
 class App extends Component {
 	constructor() {
@@ -24,6 +26,7 @@ class App extends Component {
 			tweetsOnQuery:[],
 			navTweet:[],
 			posts:[],
+			historicalData:[],
 			initialCount:5,
 			increase:5,
 			tweetCount:5,
@@ -92,6 +95,16 @@ class App extends Component {
 			.catch(console.error)
 	}
 
+	getHistoricalData = () => {
+		HistoricalData_ApiService.getMonth()
+			.then(response => {
+				this.setState({
+					historicalData:response.data
+				})
+			})
+			.catch(console.error)
+	}
+
 
 	sumToInitialCount = () => {
 		if (this.state.initialCount < this.state.maxPosts) {
@@ -127,10 +140,7 @@ class App extends Component {
 		this.getOnlyOneTweet('criptomonedas')
 		this.getTweetsOnQuery(this.state.currentQuery,this.state.tweetCount)
 		this.getPosts(this.state.initialCount)
-	}
-
-	componentDidUpdate() {
-		console.log(this.state.tweetCount)
+		this.getHistoricalData()
 	}
 
 
@@ -145,7 +155,7 @@ class App extends Component {
       			getTweetsOnQuery={this.getTweetsOnQuery} tweetsOnQuery={this.state.tweetsOnQuery} sumToInitialCount={this.sumToInitialCount} 
       			sumToTweetCount={this.sumToTweetCount}	/> } /> 
 	
-	  <Route path="/graficos" component={() => <h1>Graficos</h1>} />
+	  <Route path="/graficos" component={(props) => <Graficos {...props} month={this.state.historicalData} />} />
       <Route path="/about" component={() => <h1>About</h1>} />
       			
       <Route path="/" component={(props) => <Footer btcAverage={this.state.btcAverage} coindesk={this.state.coindesk} /> } />  
