@@ -26,11 +26,16 @@
 
 .navbar--nav-links {
   margin:0px;
+  font-size:16px;
 
 }
 
 .navbar-brand {
-  font-size:20px;
+  font-size:16px;
+}
+
+.nav-tweet {
+  font-size:12px;
 }
 
 .list-group {

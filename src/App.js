@@ -35,7 +35,7 @@ class App extends Component {
 			tweetIncrease:5,
 			currentQuery: 'criptomonedas',
 			maxTweets:30,
-			maxPosts:10
+			maxPosts:80
 		}
 	}
 

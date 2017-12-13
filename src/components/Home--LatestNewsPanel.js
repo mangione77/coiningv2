@@ -39,7 +39,7 @@ class LatestNewsPanel extends Component {
 				    </ul>
 				  </div>
 				  <div className="panel-footer">
-				  	<button className="btn btn-primary btn-block" onClick={this.moreNewsHandler}>Más noticias</button>
+				  	<button className="btn btn-primary btn-block moreThings-button" onClick={this.moreNewsHandler}>Más noticias</button>
 				  </div>
 				</div>
 		)

@@ -8,22 +8,12 @@ class NavBar extends Component {
 			<nav className="navbar navbar--main">
 			  <div className="container-fluid">
 			    <div className="navbar-header">
-			      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			        <span className="sr-only">Toggle navigation</span>
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
+			      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbarCollapse" aria-expanded="false">
+			        &#9776;
 			      </button>
-			      <NavLink to="/" className="navbar-brand">Coining</NavLink>
+			      <NavLink to="/" className="navbar-brand">El Precio del Bitcoin</NavLink>
 			    </div>
-			    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			    <ul className="nav navbar-nav navbar-left">
-			    {	
-			    	this.props.navTweet.length !== 0 
-			    	? <li className="navbar-link"><a>Trending:{(this.props.navTweet.text).slice(0,80)}...</a></li>
-			    	: <li className="navbar-link"><a>Trending:</a></li>
-			    }
-			    </ul>
+			    <div className="collapse navbar-collapse" id="mainNavbarCollapse">
 			      <ul className="nav navbar-nav navbar-right">
 			        <li className="navbar-link"><a>Último precio:{' ' +formatCurrency(parseFloat(((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)))}€</a></li>
 			        <li className="navbar-link"><a>Últimas noticias</a></li>
