@@ -13,6 +13,13 @@ class NavBar extends Component {
 			      </button>
 			      <NavLink to="/" className="navbar-brand">El Precio del Bitcoin</NavLink>
 			    </div>
+			    <ul className="nav navbar-nav navbar-left nav-tweet">
+			    {	
+			    	this.props.navTweet.length
+			    	? <li className="navbar-link tweet-navbar"><a>Trending:{this.props.navTweet.slice(0,80)}...</a></li>
+			    	: <li className="navbar-link tweet-navbar"><a>Trending: Cargando...</a></li>
+			    }
+			    </ul>
 			    <div className="collapse navbar-collapse" id="mainNavbarCollapse">
 			      <ul className="nav navbar-nav navbar-right">
 			        <li className="navbar-link"><a>Último precio:{' ' +formatCurrency(parseFloat(((this.props.btcAverage+this.props.coindesk)/2).toFixed(2)))}€</a></li>

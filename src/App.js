@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
+import socketIOClient from 'socket.io-client'
 import './App.css';
 import swal from 'sweetalert2'
 
@@ -24,9 +25,10 @@ class App extends Component {
 		this.state = {
 			btcAverage:parseFloat(Number),
 			coindesk:parseFloat(Number),
+			endpoint:'http://localhost:4001/',
 			exchanges:[],
 			tweetsOnQuery:[],
-			navTweet:[],
+			navTweet:false,
 			posts:[],
 			historicalData:[],
 			initialCount:5,
@@ -139,10 +141,21 @@ class App extends Component {
 		this.getBTCAverageEURLatestPrice()
 		this.getCoindeskEURLatestPrice()
 		this.getExchangesData()
-		this.getOnlyOneTweet('criptomonedas')
 		this.getTweetsOnQuery(this.state.currentQuery,this.state.tweetCount)
 		this.getPosts(this.state.initialCount)
 		this.getHistoricalData()
+		const endpoint = this.state.endpoint
+    	const socket = socketIOClient(endpoint)
+      	socket.on('FromAPI', data => {
+      		console.log(data)
+      	this.setState({
+        	navTweet:data
+      	})
+      })
+	}
+
+	componentDidUpdate() {
+		console.log(this.state.navTweet)
 	}
 
 
